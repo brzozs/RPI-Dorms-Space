@@ -38,7 +38,7 @@ const DORMS = [
 function DormSelector({ selectedDorm, onSelectDorm }) {
   return (
     <div className="dorm-selector">
-      <h2>Select a Dorm</h2>
+      <h2>Buildings</h2>
       <div className="dorm-grid">
         {DORMS.map((dorm) => (
           <button
@@ -48,7 +48,6 @@ function DormSelector({ selectedDorm, onSelectDorm }) {
           >
             <h3>{dorm.name}</h3>
             <span className="dorm-type">{dorm.type}</span>
-            <p>{dorm.description}</p>
           </button>
         ))}
       </div>

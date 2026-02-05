@@ -62,16 +62,19 @@ The app will open at `http://localhost:3000`
 
 ## Project Structure
 
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed file organization.
+
 ```
-src/
-  ├── components/
-  │   ├── DormSelector.js    # Dorm selection UI
-  │   ├── DormViewer.js      # 3D viewer container
-  │   └── DormModel.js       # 3D model component (PLACEHOLDER)
-  ├── App.js                 # Main app component
-  └── index.js              # Entry point
-public/
-  └── models/               # Place 3D models here (.glb files)
+RPI-Dorms-Space/
+├── public/models/          # Place .glb 3D models here
+├── src/
+│   ├── components/         # React components
+│   │   ├── DormSelector.js # Building list sidebar
+│   │   ├── DormViewer.js   # 3D canvas viewer
+│   │   └── DormModel.js    # 3D scene (PLACEHOLDER)
+│   ├── App.js             # Main app
+│   └── index.js           # Entry point
+└── package.json           # Dependencies
 ```
 
 ## TODO

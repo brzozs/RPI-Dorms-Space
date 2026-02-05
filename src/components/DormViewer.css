@@ -1,17 +1,13 @@
 .dorm-viewer {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  flex: 1;
+  background: #0a0a0a;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .dorm-viewer.empty {
   justify-content: center;
   align-items: center;
-  min-height: 400px;
 }
 
 .placeholder {
@@ -20,29 +16,39 @@
 }
 
 .placeholder h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 400;
   margin-bottom: 0.5rem;
+  color: #888;
 }
 
 .viewer-header {
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .viewer-header h3 {
-  color: #333;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
   margin-bottom: 0.25rem;
 }
 
 .controls-hint {
-  color: #666;
-  font-size: 0.9rem;
+  color: #888;
+  font-size: 0.75rem;
 }
 
 .canvas-container {
   flex: 1;
-  min-height: 500px;
-  background: linear-gradient(to bottom, #f0f0f0, #ffffff);
-  border-radius: 8px;
+  background: #0a0a0a;
   position: relative;
   overflow: hidden;
 }
@@ -52,32 +58,38 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1rem 2rem;
-  border-radius: 8px;
+  color: #666;
+  font-size: 0.875rem;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.canvas-container:empty .loading-indicator {
-  opacity: 1;
 }
 
 .viewer-info {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e0e0e0;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .viewer-info p {
-  color: #666;
-  font-size: 0.85rem;
+  color: #888;
+  font-size: 0.75rem;
   margin: 0.25rem 0;
+  line-height: 1.5;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .canvas-container {
-    min-height: 300px;
+    min-height: 400px;
+  }
+  
+  .viewer-header,
+  .viewer-info {
+    position: static;
+    margin: 1rem;
   }
 }

@@ -2,6 +2,7 @@
 node_modules/
 /.pnp
 .pnp.js
+package-lock.json
 
 # Testing
 /coverage
@@ -10,24 +11,40 @@ node_modules/
 /build
 /dist
 
-# Misc
-.DS_Store
+# Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 
-# IDE
+# IDE & Editors
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.project
+.classpath
+.settings/
 
-# 3D Model files (these can be large - track with Git LFS or host separately)
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Siemens NX source files (large CAD files - DO NOT commit)
 *.prt
 *.stp
 *.step
@@ -36,11 +53,14 @@ yarn-error.log*
 *.jt
 *.x_t
 *.x_b
+*.catpart
+*.catproduct
 
-# Compiled 3D formats (keep converted web-friendly formats in git)
-# *.glb
-# *.gltf
+# Web-optimized 3D models (these CAN be committed - keep them!)
+# Uncomment to ignore if models get too large:
+# public/models/*.glb
+# public/models/*.gltf
 
-# OS
-.DS_Store
-Thumbs.db
+# Misc
+*.log
+.eslintcache

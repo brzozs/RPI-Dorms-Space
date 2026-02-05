@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <h1>RPI Dorms Space</h1>
-        <p>Explore your future dorm room in 3D</p>
+        <h1>RPI Dorms</h1>
+        <p>View dorm rooms in 3D</p>
       </header>
       
       <main className="main-content">
@@ -23,7 +23,7 @@ function App() {
       </main>
       
       <footer className="footer">
-        <p>3D Models created with Siemens NX | RPI Student Project</p>
+        <p>Models created with Siemens NX</p>
       </footer>
     </div>
   );

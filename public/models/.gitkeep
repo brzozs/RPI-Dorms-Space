@@ -1,0 +1,21 @@
+# Place your .glb or .gltf 3D model files here
+
+## Model Export Instructions
+
+1. Export from Siemens NX as STEP (.stp) or Parasolid (.x_t)
+2. Convert to GLB using:
+   - Online: https://products.aspose.app/3d/conversion
+   - Blender: Import > Export as GLB
+   - CLI tools: obj2gltf, gltf-pipeline
+
+3. Name files by dorm building:
+   - barton.glb
+   - quad.glb
+   - warren.glb
+   - bray.glb
+   - cary.glb
+
+4. Keep models optimized:
+   - Max 100k polygons per model
+   - Textures: 2048x2048 or smaller
+   - Use GLB (binary) format for smaller file size

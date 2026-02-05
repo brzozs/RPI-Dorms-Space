@@ -1,61 +1,82 @@
 .dorm-selector {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #0f0f0f;
+  border-right: 1px solid #1a1a1a;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
 }
 
 .dorm-selector h2 {
-  margin-bottom: 1rem;
-  color: #333;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin-bottom: 1.5rem;
 }
 
 .dorm-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .dorm-card {
-  background: white;
-  border: 2px solid #e0e0e0;
+  background: transparent;
+  border: none;
   border-radius: 8px;
   padding: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   text-align: left;
+  position: relative;
 }
 
-.dorm-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-color: #667eea;
+.dorm-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.dorm-card:hover::before {
+  opacity: 1;
 }
 
 .dorm-card.selected {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: #1a1a1a;
+}
+
+.dorm-card.selected::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: #fff;
+  border-radius: 0 2px 2px 0;
 }
 
 .dorm-card h3 {
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-size: 1.1rem;
+  position: relative;
+  margin-bottom: 0.25rem;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .dorm-type {
+  position: relative;
   display: inline-block;
-  background: #667eea;
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  margin-bottom: 0.5rem;
+  color: #888;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .dorm-card p {
-  color: #666;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
+  display: none;
 }
