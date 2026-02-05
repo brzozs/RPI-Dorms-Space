@@ -74,7 +74,7 @@ function OrbitControls() {
       } else if (e.touches.length === 2) {
         const newDistance = getTouchDistance(e.touches);
         const deltaPinch = newDistance - touchDistance.current;
-        distance.current += deltaPinch * 0.01;
+        distance.current -= deltaPinch * 0.01;
         distance.current = Math.max(4, Math.min(15, distance.current));
         touchDistance.current = newDistance;
       }
