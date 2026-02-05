@@ -1,17 +1,69 @@
 .dorm-selector {
   background: #0f0f0f;
   border-right: 1px solid #1a1a1a;
-  padding: 2rem 1.5rem;
+  padding: 0;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.dorm-selector h2 {
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.selector-header {
+  padding: 2rem 1.5rem 1rem;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.selector-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.selector-header p {
+  font-size: 0.8rem;
   color: #666;
-  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #1a1a1a;
+  background: #0a0a0a;
+}
+
+.tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.tab:hover {
+  color: #999;
+  background: #0f0f0f;
+}
+
+.tab.active {
+  color: #fff;
+  background: #0f0f0f;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #fff;
 }
 
 .dorm-grid {

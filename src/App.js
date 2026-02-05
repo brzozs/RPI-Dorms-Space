@@ -9,8 +9,7 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <h1>RPI Dorms</h1>
-        <p>View dorm rooms in 3D</p>
+        <h1>RPI DORMS SPACE</h1>
       </header>
       
       <main className="main-content">
