@@ -43,15 +43,6 @@ function OrbitControls() {
       distance.current = Math.max(4, Math.min(15, distance.current));
     };
 
-    const getTouchCenter = (touches) => {
-      let x = 0, y = 0;
-      for (let i = 0; i < touches.length; i++) {
-        x += touches[i].clientX;
-        y += touches[i].clientY;
-      }
-      return { x: x / touches.length, y: y / touches.length };
-    };
-
     const getTouchDistance = (touches) => {
       if (touches.length < 2) return 0;
       const dx = touches[0].clientX - touches[1].clientX;
