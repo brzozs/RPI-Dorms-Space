@@ -9,6 +9,7 @@ function OrbitControls() {
   const lastMouse = useRef({ x: 0, y: 0 });
   const targetRotation = useRef({ x: 0, y: 0 });
   const distance = useRef(8);
+  const touchDistance = useRef(0);
 
   React.useEffect(() => {
     const handleMouseDown = (e) => {
@@ -42,19 +43,79 @@ function OrbitControls() {
       distance.current = Math.max(4, Math.min(15, distance.current));
     };
 
+    const getTouchCenter = (touches) => {
+      let x = 0, y = 0;
+      for (let i = 0; i < touches.length; i++) {
+        x += touches[i].clientX;
+        y += touches[i].clientY;
+      }
+      return { x: x / touches.length, y: y / touches.length };
+    };
+
+    const getTouchDistance = (touches) => {
+      if (touches.length < 2) return 0;
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    };
+
+    const handleTouchStart = (e) => {
+      if (e.touches.length === 1) {
+        setIsDragging(true);
+        lastMouse.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2) {
+        setIsDragging(false);
+        touchDistance.current = getTouchDistance(e.touches);
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (e.touches.length === 1 && isDragging) {
+        const deltaX = e.touches[0].clientX - lastMouse.current.x;
+        const deltaY = e.touches[0].clientY - lastMouse.current.y;
+
+        targetRotation.current.y += deltaX * 0.005;
+        targetRotation.current.x += deltaY * 0.005;
+        
+        targetRotation.current.x = Math.max(-Math.PI / 3, Math.min(Math.PI / 3, targetRotation.current.x));
+
+        lastMouse.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2) {
+        const newDistance = getTouchDistance(e.touches);
+        const deltaPinch = newDistance - touchDistance.current;
+        distance.current += deltaPinch * 0.01;
+        distance.current = Math.max(4, Math.min(15, distance.current));
+        touchDistance.current = newDistance;
+      }
+    };
+
+    const handleTouchEnd = (e) => {
+      if (e.touches.length === 0) {
+        setIsDragging(false);
+        touchDistance.current = 0;
+      }
+    };
+
     const canvas = gl.domElement;
     canvas.style.cursor = 'grab';
+    canvas.style.touchAction = 'none';
 
     canvas.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('wheel', handleWheel, { passive: false });
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     return () => {
       canvas.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('wheel', handleWheel);
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchend', handleTouchEnd);
     };
   }, [isDragging, gl]);
 
@@ -85,7 +146,7 @@ function DormViewer({ dormId }) {
     <div className="dorm-viewer">
       <div className="viewer-header">
         <h3>Room Preview</h3>
-        <p className="controls-hint">Drag to rotate • Scroll to zoom</p>
+        <p className="controls-hint">Drag to rotate • Scroll/Pinch to zoom</p>
       </div>
       
       <div className="canvas-container">
